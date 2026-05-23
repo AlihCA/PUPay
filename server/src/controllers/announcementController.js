@@ -1,3 +1,5 @@
+import { successResponse, errorResponse } from "../utils/responseHelper.js";
+
 let announcements = [];
 let currentId = 1;
 
@@ -7,10 +9,11 @@ export const createAnnouncement = (req, res) => {
     const { title, message, createdBy } = req.body;
 
     if (!title || !message) {
-      return res.status(400).json({
-        success: false,
-        message: "Title and message are required",
-      });
+      return errorResponse(
+        res,
+        "Title and message are required",
+        400
+      );
     }
 
     const newAnnouncement = {
@@ -23,26 +26,24 @@ export const createAnnouncement = (req, res) => {
 
     announcements.push(newAnnouncement);
 
-    return res.status(201).json({
-      success: true,
-      message: "Announcement created successfully",
-      data: newAnnouncement,
-    });
+    return successResponse(
+      res,
+      "Announcement created successfully",
+      newAnnouncement,
+      201
+    );
   } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "Server error",
-    });
+    return errorResponse(res, "Server error", 500);
   }
 };
 
 // GET all announcements
 export const getAllAnnouncements = (req, res) => {
-  return res.status(200).json({
-    success: true,
-    message: "Announcements fetched successfully",
-    data: announcements,
-  });
+  return successResponse(
+    res,
+    "Announcements fetched successfully",
+    announcements
+  );
 };
 
 // GET single announcement
@@ -52,17 +53,14 @@ export const getAnnouncementById = (req, res) => {
   const announcement = announcements.find((a) => a.id == id);
 
   if (!announcement) {
-    return res.status(404).json({
-      success: false,
-      message: "Announcement not found",
-    });
+    return errorResponse(res, "Announcement not found", 404);
   }
 
-  return res.status(200).json({
-    success: true,
-    message: "Announcement found",
-    data: announcement,
-  });
+  return successResponse(
+    res,
+    "Announcement found",
+    announcement
+  );
 };
 
 // UPDATE announcement
@@ -72,10 +70,7 @@ export const updateAnnouncement = (req, res) => {
   const index = announcements.findIndex((a) => a.id == id);
 
   if (index === -1) {
-    return res.status(404).json({
-      success: false,
-      message: "Announcement not found",
-    });
+    return errorResponse(res, "Announcement not found", 404);
   }
 
   announcements[index] = {
@@ -83,11 +78,11 @@ export const updateAnnouncement = (req, res) => {
     ...req.body,
   };
 
-  return res.status(200).json({
-    success: true,
-    message: "Announcement updated successfully",
-    data: announcements[index],
-  });
+  return successResponse(
+    res,
+    "Announcement updated successfully",
+    announcements[index]
+  );
 };
 
 // DELETE announcement
@@ -97,17 +92,14 @@ export const deleteAnnouncement = (req, res) => {
   const index = announcements.findIndex((a) => a.id == id);
 
   if (index === -1) {
-    return res.status(404).json({
-      success: false,
-      message: "Announcement not found",
-    });
+    return errorResponse(res, "Announcement not found", 404);
   }
 
   const deleted = announcements.splice(index, 1);
 
-  return res.status(200).json({
-    success: true,
-    message: "Announcement deleted successfully",
-    data: deleted[0],
-  });
+  return successResponse(
+    res,
+    "Announcement deleted successfully",
+    deleted[0]
+  );
 };

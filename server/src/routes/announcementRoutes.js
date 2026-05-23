@@ -1,3 +1,4 @@
+import { isAdmin } from "../middleware/roleMiddleware.js";
 import express from "express";
 
 import {
@@ -10,19 +11,17 @@ import {
 
 const router = express.Router();
 
-// CREATE
-router.post("/", createAnnouncement);
 
-// READ ALL
+router.post("/", isAdmin, createAnnouncement);
+
+
 router.get("/", getAllAnnouncements);
 
-// READ ONE
+
 router.get("/:id", getAnnouncementById);
 
-// UPDATE
-router.put("/:id", updateAnnouncement);
+router.put("/:id", isAdmin, updateAnnouncement);
 
-// DELETE
-router.delete("/:id", deleteAnnouncement);
+router.put("/:id", isAdmin, updateAnnouncement);
 
 export default router;
