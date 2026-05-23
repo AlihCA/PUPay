@@ -1,0 +1,54 @@
+.collection-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.collection-modal {
+  width: min(480px, 92vw);
+  background: var(--color-surface);
+  border-radius: 22px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.collection-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collection-modal input,
+.collection-modal textarea,
+.collection-modal select {
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.collection-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.collection-modal-actions button {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.collection-modal-actions button:last-child {
+  background: var(--color-primary);
+  color: white;
+}

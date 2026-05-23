@@ -15,6 +15,8 @@ export const dummyCollections = [
     targetSection: "BSIT 3-2",
     totalStudents: 60,
     paidStudents: 42,
+    collected: 21000,
+    target: 30000,
   },
   {
     id: 2,
@@ -26,5 +28,7 @@ export const dummyCollections = [
     targetSection: "BSIT 3-2",
     totalStudents: 60,
     paidStudents: 35,
+    collected: 3500,
+    target: 6000,
   },
 ];

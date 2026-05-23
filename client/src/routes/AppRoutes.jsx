@@ -15,6 +15,7 @@ import AdminAnnouncements from "../pages/admin/Announcements";
 import AdminAIHelper from "../pages/admin/AIHelper";
 import AdminSettings from "../pages/admin/Settings";
 
+
 import StudentDashboard from "../pages/student/Dashboard";
 import StudentCollections from "../pages/student/MyCollections";
 import StudentPayments from "../pages/student/MyPayments";
@@ -48,6 +49,7 @@ function AppRoutes() {
           </DashboardLayout>
         }
       />
+      
 
       <Route
         path="/admin/payments"

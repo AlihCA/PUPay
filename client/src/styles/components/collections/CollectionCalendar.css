@@ -1,0 +1,76 @@
+.collection-calendar-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.collection-calendar-header h3 {
+  color: var(--color-text);
+}
+
+.collection-calendar-header p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.collection-calendar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.calendar-event-item {
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.calendar-date-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: var(--color-primary-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-date-box span {
+  font-size: 0.7rem;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.calendar-date-box strong {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+}
+
+.calendar-event-info h4 {
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.calendar-event-info p {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 700px) {
+  .calendar-event-item {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-date-box {
+    width: 100%;
+  }
+}
