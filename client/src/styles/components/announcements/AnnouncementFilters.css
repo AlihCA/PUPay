@@ -1,0 +1,20 @@
+.announcement-filters {
+  display: grid;
+  grid-template-columns: 1fr 180px 200px;
+  gap: 12px;
+}
+
+.announcement-filters input,
+.announcement-filters select {
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+@media (max-width: 800px) {
+  .announcement-filters {
+    grid-template-columns: 1fr;
+  }
+}

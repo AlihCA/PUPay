@@ -1,0 +1,78 @@
+.admin-announcements-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-page-header h2 {
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+
+.admin-page-header p {
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+
+.announcement-header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.announcement-primary-btn,
+.announcement-secondary-btn {
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.announcement-primary-btn {
+  background: var(--color-primary);
+  color: white;
+}
+
+.announcement-secondary-btn {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.announcement-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.announcement-empty-state {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.announcement-empty-state h3 {
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.announcement-empty-state p {
+  color: var(--color-muted);
+}
+
+@media (max-width: 800px) {
+  .admin-page-header,
+  .announcement-header-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
