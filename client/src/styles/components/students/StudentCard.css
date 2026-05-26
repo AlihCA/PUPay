@@ -1,0 +1,19 @@
+.student-summary-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.student-summary-card span {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.student-summary-card strong {
+  display: block;
+  color: var(--color-text);
+  font-size: 1.7rem;
+  margin-top: 10px;
+}

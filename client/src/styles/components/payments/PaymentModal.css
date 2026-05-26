@@ -1,0 +1,70 @@
+.payment-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.payment-modal {
+  width: min(520px, 92vw);
+  background: var(--color-surface);
+  border-radius: 22px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.payment-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.payment-modal-header h3 {
+  color: var(--color-text);
+}
+
+.payment-modal-header p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.payment-modal-header button {
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.payment-modal input,
+.payment-modal select {
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.payment-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.payment-modal-actions button {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.payment-modal-actions button:last-child {
+  background: var(--color-primary);
+  color: white;
+}

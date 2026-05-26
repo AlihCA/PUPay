@@ -1,0 +1,116 @@
+.student-table-wrapper {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  overflow-x: auto;
+  box-shadow: var(--shadow-sm);
+}
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.student-table th,
+.student-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.student-table th {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.student-table td {
+  color: var(--color-text);
+}
+
+.student-table td p {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.student-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 78px;
+  height: 32px;
+
+  border-radius: 12px;
+  padding: 0 12px;
+
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.student-status.paid {
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.student-status.pending {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.student-status.overdue {
+  background: rgba(220, 38, 38, 0.12);
+  color: #dc2626;
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.student-progress-cell {
+  min-width: 170px;
+}
+
+.student-progress-label {
+  display: flex;
+  justify-content: space-between;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+}
+
+.student-progress-bar {
+  height: 8px;
+  background: var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.student-progress-bar div {
+  height: 100%;
+  background: var(--color-primary);
+}
+
+.view-student-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.student-empty-state {
+  padding: 32px;
+  text-align: center;
+}
+
+.student-empty-state h3 {
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.student-empty-state p {
+  color: var(--color-muted);
+}

@@ -1,0 +1,45 @@
+.admin-payments-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-payments-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.admin-payments-header h2 {
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+
+.admin-payments-header p {
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+
+.payment-primary-btn {
+  border: none;
+  border-radius: 14px;
+  padding: 12px 18px;
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.payment-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+}
+
+@media (max-width: 800px) {
+  .admin-payments-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

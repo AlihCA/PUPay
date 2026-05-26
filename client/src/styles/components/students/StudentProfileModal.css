@@ -1,0 +1,123 @@
+.student-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.student-modal {
+  width: min(720px, 94vw);
+  max-height: 88vh;
+  overflow-y: auto;
+
+  background: var(--color-surface);
+  border-radius: 22px;
+  padding: 22px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.student-modal-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.student-modal-header h3 {
+  color: var(--color-text);
+}
+
+.student-modal-header p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.student-modal-header button {
+  border: none;
+  background: transparent;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.student-profile-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.student-profile-summary div {
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.student-profile-summary span {
+  display: block;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+}
+
+.student-profile-summary strong {
+  color: var(--color-text);
+}
+
+.student-history-section h4 {
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.student-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.student-history-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.student-history-item strong {
+  color: var(--color-text);
+}
+
+.student-history-item p {
+  color: var(--color-muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.student-history-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.student-history-right span:first-child {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+@media (max-width: 800px) {
+  .student-profile-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .student-history-item,
+  .student-history-right {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

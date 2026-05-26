@@ -1,32 +1,76 @@
 // ========================================
 // FUTURE API
 // GET /api/students
-// Returns all student records
+// Returns all students with payment progress
 // ========================================
 
 export const dummyStudents = [
   {
     id: 1,
     studentNumber: "2023-0001",
-    fullName: "Maria Santos",
-    email: "maria.santos@example.com",
+    name: "Maria Santos",
     section: "BSIT 3-2",
-    paymentStatus: "Paid",
+    totalCollections: 3,
+    paidCollections: 2,
+    pendingCollections: 1,
+    overdueCollections: 0,
+    totalPaid: 600,
+    paymentHistory: [
+      {
+        id: 1,
+        collectionTitle: "Foundation Day Contribution",
+        amount: 500,
+        status: "Paid",
+        paymentDate: "2026-05-20",
+      },
+      {
+        id: 2,
+        collectionTitle: "Class Fund",
+        amount: 100,
+        status: "Paid",
+        paymentDate: "2026-05-22",
+      },
+      {
+        id: 3,
+        collectionTitle: "Organization Shirt",
+        amount: 350,
+        status: "Pending",
+        paymentDate: "-",
+      },
+    ],
   },
   {
     id: 2,
     studentNumber: "2023-0002",
-    fullName: "John Reyes",
-    email: "john.reyes@example.com",
+    name: "John Reyes",
     section: "BSIT 3-2",
-    paymentStatus: "Pending",
-  },
-  {
-    id: 3,
-    studentNumber: "2023-0003",
-    fullName: "Ana Cruz",
-    email: "ana.cruz@example.com",
-    section: "BSIT 3-2",
-    paymentStatus: "Overdue",
+    totalCollections: 3,
+    paidCollections: 1,
+    pendingCollections: 1,
+    overdueCollections: 1,
+    totalPaid: 500,
+    paymentHistory: [
+      {
+        id: 1,
+        collectionTitle: "Foundation Day Contribution",
+        amount: 500,
+        status: "Paid",
+        paymentDate: "2026-05-21",
+      },
+      {
+        id: 2,
+        collectionTitle: "Class Fund",
+        amount: 100,
+        status: "Overdue",
+        paymentDate: "-",
+      },
+      {
+        id: 3,
+        collectionTitle: "Organization Shirt",
+        amount: 350,
+        status: "Pending",
+        paymentDate: "-",
+      },
+    ],
   },
 ];
