@@ -131,6 +131,10 @@ exports.updatePaymentStatus = async (req, res) => {
 // ========================================
 exports.createCheckoutSession = async (req, res) => {
   try {
+    console.log("==================================");
+    console.log("Creating PayMongo checkout...");
+    console.log("Request Body:", req.body);
+
     const {
       collection_id,
       student_id,
@@ -159,6 +163,10 @@ exports.createCheckoutSession = async (req, res) => {
 
     const referenceNumber = checkout.data.id;
 
+    console.log("PayMongo checkout created successfully");
+    console.log("Checkout URL:", checkoutUrl);
+    console.log("Reference Number:", referenceNumber);
+
     // SAVE TO DATABASE
     const [result] = await db.query(
       `
@@ -184,6 +192,10 @@ exports.createCheckoutSession = async (req, res) => {
         checkoutUrl,
       ]
     );
+
+    console.log("Payment saved to database");
+    console.log("Payment ID:", result.insertId);
+    console.log("==================================");
 
     res.status(201).json({
       success: true,
@@ -214,7 +226,10 @@ exports.createCheckoutSession = async (req, res) => {
 // ========================================
 exports.paymongoWebhook = async (req, res) => {
   try {
-    console.log("Webhook received:", req.body);
+    console.log("==================================");
+    console.log("Webhook received from PayMongo");
+    console.log(JSON.stringify(req.body, null, 2));
+    console.log("==================================");
 
     res.json({
       success: true,
