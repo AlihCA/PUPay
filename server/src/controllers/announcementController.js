@@ -3,50 +3,33 @@ import { successResponse, errorResponse } from "../utils/responseHelper.js";
 let announcements = [];
 let currentId = 1;
 
-// CREATE announcement
+// CREATE
 export const createAnnouncement = (req, res) => {
-  try {
-    const { title, message, createdBy } = req.body;
+  const { title, message } = req.body;
 
-    if (!title || !message) {
-      return errorResponse(
-        res,
-        "Title and message are required",
-        400
-      );
-    }
-
-    const newAnnouncement = {
-      id: currentId++,
-      title,
-      message,
-      createdBy: createdBy || "admin",
-      createdAt: new Date(),
-    };
-
-    announcements.push(newAnnouncement);
-
-    return successResponse(
-      res,
-      "Announcement created successfully",
-      newAnnouncement,
-      201
-    );
-  } catch (error) {
-    return errorResponse(res, "Server error", 500);
+  if (!title || !message) {
+    return errorResponse(res, "Title and message are required", 400);
   }
+
+  const newAnnouncement = {
+    id: currentId++,
+    title,
+    message,
+    createdBy: req.user?.role || "admin",
+    createdAt: new Date(),
+  };
+
+  announcements.push(newAnnouncement);
+
+  return successResponse(res, "Announcement created successfully", newAnnouncement, 201);
 };
 
-// GET all announcements
+// GET ALL
 export const getAllAnnouncements = (req, res) => {
-  return successResponse(
-    res,
-    "Announcements fetched successfully",
-    announcements
-  );
+  return successResponse(res, "Announcements fetched successfully", announcements);
 };
 
-// GET single announcement
+// GET BY ID
 export const getAnnouncementById = (req, res) => {
   const { id } = req.params;
 
@@ -56,14 +39,10 @@ export const getAnnouncementById = (req, res) => {
     return errorResponse(res, "Announcement not found", 404);
   }
 
-  return successResponse(
-    res,
-    "Announcement found",
-    announcement
-  );
+  return successResponse(res, "Announcement found", announcement);
 };
 
-// UPDATE announcement
+// UPDATE
 export const updateAnnouncement = (req, res) => {
   const { id } = req.params;
 
@@ -73,19 +52,21 @@ export const updateAnnouncement = (req, res) => {
     return errorResponse(res, "Announcement not found", 404);
   }
 
+  const { title, message } = req.body;
+
+  if (!title && !message) {
+    return errorResponse(res, "Nothing to update", 400);
+  }
+
   announcements[index] = {
     ...announcements[index],
     ...req.body,
   };
 
-  return successResponse(
-    res,
-    "Announcement updated successfully",
-    announcements[index]
-  );
+  return successResponse(res, "Announcement updated successfully", announcements[index]);
 };
 
-// DELETE announcement
+// DELETE
 export const deleteAnnouncement = (req, res) => {
   const { id } = req.params;
 
@@ -97,9 +78,5 @@ export const deleteAnnouncement = (req, res) => {
 
   const deleted = announcements.splice(index, 1);
 
-  return successResponse(
-    res,
-    "Announcement deleted successfully",
-    deleted[0]
-  );
+  return successResponse(res, "Announcement deleted successfully", deleted[0]);
 };
