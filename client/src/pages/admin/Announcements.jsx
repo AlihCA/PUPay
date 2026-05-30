@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { dummyAnnouncements } from "../../data/dummyAnnouncements";
+import { useEffect, useState } from "react";
+import { getAnnouncements, createAnnouncement, updateAnnouncement, deleteAnnouncement,} from "../../services/announcementService";
 
 import AnnouncementCard from "../../components/announcements/AnnouncementCard";
 import AnnouncementFilters from "../../components/announcements/AnnouncementFilters";
@@ -8,7 +8,16 @@ import AnnouncementModal from "../../components/announcements/AnnouncementModal"
 import "../../styles/pages/admin/Announcements.css";
 
 function Announcements() {
-  const [announcements, setAnnouncements] = useState(dummyAnnouncements);
+  const [announcements, setAnnouncements] = useState([]);
+  useEffect(() => {
+  const loadAnnouncements = async () => {
+    const data = await getAnnouncements();
+    setAnnouncements(data);
+  };
+
+  loadAnnouncements();
+}, []);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [sectionFilter, setSectionFilter] = useState("All");
   const [typeFilter, setTypeFilter] = useState("All");
@@ -30,58 +39,48 @@ function Announcements() {
     return matchesSearch && matchesSection && matchesType;
   });
 
-  // ========================================
-  // FUTURE API
-  // POST /api/announcements
-  // Creates announcement
-  // ========================================
-  const handleCreateAnnouncement = (announcementData) => {
-    setAnnouncements([
-      {
-        id: Date.now(),
-        ...announcementData,
-        datePosted: new Date().toISOString().split("T")[0],
-      },
-      ...announcements,
-    ]);
 
-    setIsModalOpen(false);
-  };
 
-  // ========================================
-  // FUTURE API
-  // PUT /api/announcements/:id
-  // Updates announcement
-  // ========================================
-  const handleUpdateAnnouncement = (updatedAnnouncement) => {
-    setAnnouncements(
-      announcements.map((announcement) =>
-        announcement.id === updatedAnnouncement.id
-          ? updatedAnnouncement
-          : announcement
-      )
-    );
+const handleCreateAnnouncement = async (announcementData) => {
+  const createdAnnouncement = await createAnnouncement(announcementData);
 
-    setEditingAnnouncement(null);
-    setIsModalOpen(false);
-  };
+  setAnnouncements([createdAnnouncement, ...announcements]);
+  setIsModalOpen(false);
+};
 
-  // ========================================
-  // FUTURE API
-  // DELETE /api/announcements/:id
-  // Deletes announcement
-  // ========================================
-  const handleDeleteAnnouncement = (announcementId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this announcement?"
-    );
 
-    if (!confirmDelete) return;
 
-    setAnnouncements(
-      announcements.filter((announcement) => announcement.id !== announcementId)
-    );
-  };
+const handleUpdateAnnouncement = async (updatedAnnouncement) => {
+  const savedAnnouncement = await updateAnnouncement(
+    updatedAnnouncement.id,
+    updatedAnnouncement
+  );
+
+  setAnnouncements(
+    announcements.map((announcement) =>
+      announcement.id === savedAnnouncement.id
+        ? savedAnnouncement
+        : announcement
+    )
+  );
+
+  setEditingAnnouncement(null);
+  setIsModalOpen(false);
+};
+
+const handleDeleteAnnouncement = async (announcementId) => {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this announcement?"
+  );
+
+  if (!confirmDelete) return;
+
+  await deleteAnnouncement(announcementId);
+
+  setAnnouncements(
+    announcements.filter((announcement) => announcement.id !== announcementId)
+  );
+};
 
   const handleOpenCreateModal = () => {
     setEditingAnnouncement(null);

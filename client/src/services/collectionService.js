@@ -1,53 +1,24 @@
-// ========================================
-// FUTURE API SERVICE
-// Handles collection-related API requests
-// ========================================
+import { dummyCollections } from "../data/dummyCollections";
 
-// GET /api/collections
-export async function getCollections() {
-  // const response = await fetch("/api/collections");
-  // return response.json();
+export const getCollections = async () => {
+  return dummyCollections;
+};
 
-  return [];
-}
+export const createCollection = async (data) => {
+  return {
+    id: Date.now(),
+    ...data,
+    collected: 0,
+  };
+};
 
-// GET /api/collections/:id
-export async function getCollectionById(id) {
-  // const response = await fetch(`/api/collections/${id}`);
-  // return response.json();
+export const updateCollection = async (id, data) => {
+  return {
+    id,
+    ...data,
+  };
+};
 
-  return null;
-}
-
-// POST /api/collections
-export async function createCollection(collectionData) {
-  // const response = await fetch("/api/collections", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(collectionData),
-  // });
-  // return response.json();
-
-  return collectionData;
-}
-
-// PUT /api/collections/:id
-export async function updateCollection(id, collectionData) {
-  // const response = await fetch(`/api/collections/${id}`, {
-  //   method: "PUT",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(collectionData),
-  // });
-  // return response.json();
-
-  return { id, ...collectionData };
-}
-
-// DELETE /api/collections/:id
-export async function deleteCollection(id) {
-  // await fetch(`/api/collections/${id}`, {
-  //   method: "DELETE",
-  // });
-
+export const deleteCollection = async (id) => {
   return id;
-}
+};

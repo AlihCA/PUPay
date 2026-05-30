@@ -1,45 +1,24 @@
-// ========================================
-// FUTURE API SERVICE
-// Handles announcement-related API requests
-// ========================================
+import { dummyAnnouncements } from "../data/dummyAnnouncements";
 
-// GET /api/announcements
-export async function getAnnouncements() {
-  // const response = await fetch("/api/announcements");
-  // return response.json();
+export const getAnnouncements = async () => {
+  return dummyAnnouncements;
+};
 
-  return [];
-}
+export const createAnnouncement = async (data) => {
+  return {
+    id: Date.now(),
+    ...data,
+    datePosted: new Date().toISOString().split("T")[0],
+  };
+};
 
-// POST /api/announcements
-export async function createAnnouncement(announcementData) {
-  // const response = await fetch("/api/announcements", {
-  //   method: "POST",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(announcementData),
-  // });
-  // return response.json();
+export const updateAnnouncement = async (id, data) => {
+  return {
+    id,
+    ...data,
+  };
+};
 
-  return announcementData;
-}
-
-// PUT /api/announcements/:id
-export async function updateAnnouncement(id, announcementData) {
-  // const response = await fetch(`/api/announcements/${id}`, {
-  //   method: "PUT",
-  //   headers: { "Content-Type": "application/json" },
-  //   body: JSON.stringify(announcementData),
-  // });
-  // return response.json();
-
-  return { id, ...announcementData };
-}
-
-// DELETE /api/announcements/:id
-export async function deleteAnnouncement(id) {
-  // await fetch(`/api/announcements/${id}`, {
-  //   method: "DELETE",
-  // });
-
+export const deleteAnnouncement = async (id) => {
   return id;
-}
+};

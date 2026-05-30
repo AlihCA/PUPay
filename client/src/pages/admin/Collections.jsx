@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import CollectionCard from "../../components/collections/CollectionCard";
 import CollectionTable from "../../components/collections/CollectionTable";
@@ -7,7 +7,7 @@ import CreateCollectionModal from "../../components/collections/CreateCollection
 import EditCollectionModal from "../../components/collections/EditCollectionModal";
 import CollectionCalendar from "../../components/collections/CollectionCalendar";
 import "../../styles/pages/admin/Collections.css";
-import { dummyCollections } from "../../data/dummyCollections";
+import { getCollections, createCollection, updateCollection, deleteCollection,} from "../../services/collectionService";
 
 // ========================================
 // FUTURE API
@@ -49,7 +49,15 @@ const initialCollections = [
 ];
 
 function AdminCollections() {
-  const [collections, setCollections] = useState(dummyCollections);
+  const [collections, setCollections] = useState([]);
+  useEffect(() => {
+  const loadCollections = async () => {
+    const data = await getCollections();
+    setCollections(data);
+  };
+
+  loadCollections();
+}, []);
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -99,64 +107,47 @@ function AdminCollections() {
       );
     });
 
-  // ========================================
-  // FUTURE API
-  // POST /api/collections
-  // ========================================
-  const handleCreateCollection = (newCollection) => {
-    setCollections([
-      ...collections,
 
-      {
-        id: Date.now(),
+const handleCreateCollection = async (newCollection) => {
+  const createdCollection = await createCollection(newCollection);
 
-        ...newCollection,
+  setCollections([createdCollection, ...collections]);
+  setIsModalOpen(false);
+};
 
-        collected: 0,
-      },
-    ]);
 
-    setIsModalOpen(false);
-  };
 
-  // ========================================
-  // FUTURE API
-  // PUT /api/collections/:id
-  // ========================================
-  const handleUpdateCollection = (
+const handleUpdateCollection = async (updatedCollection) => {
+  const savedCollection = await updateCollection(
+    updatedCollection.id,
     updatedCollection
-  ) => {
-    setCollections(
-      collections.map((collection) =>
-        collection.id === updatedCollection.id
-          ? updatedCollection
-          : collection
-      )
-    );
+  );
 
-    setSelectedCollection(null);
+  setCollections(
+    collections.map((collection) =>
+      collection.id === savedCollection.id ? savedCollection : collection
+    )
+  );
 
-    setIsEditModalOpen(false);
-  };
+  setSelectedCollection(null);
+  setIsEditModalOpen(false);
+};
 
-  // ========================================
-  // FUTURE API
-  // DELETE /api/collections/:id
-  // ========================================
-  const handleDeleteCollection = (collectionId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this collection?"
-    );
 
-    if (!confirmDelete) return;
 
-    setCollections(
-      collections.filter(
-        (collection) =>
-          collection.id !== collectionId
-      )
-    );
-  };
+const handleDeleteCollection = async (collectionId) => {
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this collection?"
+  );
+
+  if (!confirmDelete) return;
+
+  await deleteCollection(collectionId);
+
+  setCollections(
+    collections.filter((collection) => collection.id !== collectionId)
+  );
+};
 
   const handleOpenEditModal = (collection) => {
     setSelectedCollection(collection);

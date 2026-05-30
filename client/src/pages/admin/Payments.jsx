@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { dummyPayments } from "../../data/dummyPayments";
+import { useState, useEffect} from "react";
+import { getPayments } from "../../services/paymentService";
 
 import PaymentCard from "../../components/payments/PaymentCard";
 import PaymentFilters from "../../components/payments/PaymentFilters";
@@ -9,7 +9,17 @@ import PaymentDetailsModal from "../../components/payments/PaymentDetailsModal";
 import "../../styles/pages/admin/Payments.css";
 
 function Payments() {
-  const [payments] = useState(dummyPayments);
+  const [payments, setPayments] = useState([]);
+
+  useEffect(() => {
+  const loadPayments = async () => {
+    const data = await getPayments();
+
+    setPayments(data);
+  };
+
+  loadPayments();
+}, []);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");

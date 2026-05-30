@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { dummyStudents } from "../../data/dummyStudents";
+import { useEffect, useState } from "react";
+import { getStudents } from "../../services/studentService";
 
 import StudentCard from "../../components/students/StudentCard";
 import StudentTable from "../../components/students/StudentTable";
@@ -9,7 +9,16 @@ import StudentProfileModal from "../../components/students/StudentProfileModal";
 import "../../styles/pages/admin/Students.css";
 
 function Students() {
-  const [students] = useState(dummyStudents);
+  const [students, setStudents] = useState([]);
+  useEffect(() => {
+  const loadStudents = async () => {
+    const data = await getStudents();
+    setStudents(data);
+  };
+
+  loadStudents();
+}, []);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [sectionFilter, setSectionFilter] = useState("All");
   const [statusFilter, setStatusFilter] = useState("All");
