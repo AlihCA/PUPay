@@ -1,0 +1,27 @@
+.payment-filter {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.payment-filter button {
+  border: 1px solid #f1d4dd;
+  background: #ffffff;
+  color: #6b7280;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.payment-filter button:hover {
+  background: #fff5f8;
+  color: #c9184a;
+}
+
+.payment-filter .active-filter {
+  background: #c9184a;
+  color: #ffffff;
+}

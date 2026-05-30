@@ -1,37 +1,36 @@
 // ========================================
 // FUTURE API
 // GET /api/payments
-// Returns all payment records
+// GET /api/payments/student/:studentId
 // ========================================
 
 export const dummyPayments = [
   {
     id: 1,
-    studentName: "Maria Santos",
-    studentNumber: "2023-0001",
     collectionTitle: "Foundation Day Contribution",
     amount: 500,
-    method: "PayMongo",
+    dueDate: "2026-05-30",
+    paymentMethod: "PayMongo",
     status: "Paid",
-    paymentDate: "2026-05-18",
+    paymentDate: "2026-05-20",
   },
+
   {
     id: 2,
-    studentName: "John Reyes",
-    studentNumber: "2023-0002",
-    collectionTitle: "Foundation Day Contribution",
-    amount: 500,
-    method: "Cash",
+    collectionTitle: "Class Fund",
+    amount: 100,
+    dueDate: "2026-06-05",
+    paymentMethod: "Cash",
     status: "Pending",
     paymentDate: null,
   },
+
   {
     id: 3,
-    studentName: "Ana Cruz",
-    studentNumber: "2023-0003",
-    collectionTitle: "Class Fund",
-    amount: 100,
-    method: "Cash",
+    collectionTitle: "Project Fee",
+    amount: 300,
+    dueDate: "2026-05-15",
+    paymentMethod: "PayMongo",
     status: "Overdue",
     paymentDate: null,
   },

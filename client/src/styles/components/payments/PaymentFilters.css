@@ -1,0 +1,28 @@
+.payment-filters {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.payment-filters input,
+.payment-filters select {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+}
+
+.payment-filters select {
+  max-width: 220px;
+}
+
+@media (max-width: 640px) {
+  .payment-filters {
+    flex-direction: column;
+  }
+
+  .payment-filters select {
+    max-width: 100%;
+  }
+}

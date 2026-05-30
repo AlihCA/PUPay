@@ -1,0 +1,27 @@
+.payment-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.payment-card h3 {
+  margin: 0 0 4px;
+  color: #111827;
+}
+
+.payment-card p {
+  margin: 0;
+  color: #64748b;
+}
+
+.payment-card__info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #374151;
+  font-size: 14px;
+}

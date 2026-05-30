@@ -1,0 +1,52 @@
+.announcements-page {
+  min-height: 100vh;
+  padding: 2rem;
+  background: #fff9fb;
+}
+
+.announcements-header {
+  margin-bottom: 1.5rem;
+}
+
+.announcements-header h1 {
+  color: #1f2937;
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.announcements-header p {
+  color: #6b7280;
+}
+
+.announcements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .announcements-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.announcements-empty-state {
+  background: #ffffff;
+
+  border: 1px dashed #f1d4dd;
+  border-radius: 18px;
+
+  padding: 2rem;
+
+  text-align: center;
+
+  color: #6b7280;
+
+  box-shadow: 0 8px 20px rgba(201, 24, 74, 0.05);
+}
+
+.announcements-empty-state h3 {
+  color: #c9184a;
+
+  margin-bottom: 0.5rem;
+}
