@@ -47,3 +47,14 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+/* later
+<Route
+  path="/admin"
+  element={
+    <ProtectedRoute allowedRoles={["admin"]}>
+      <AdminDashboard />
+    </ProtectedRoute>
+  }
+/>
+*/

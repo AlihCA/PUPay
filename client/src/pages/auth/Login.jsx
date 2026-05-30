@@ -1,8 +1,23 @@
+import { SignIn } from "@clerk/clerk-react";
+
 function Login() {
   return (
-    <div className="page-container">
-      <h1>Page Name</h1>
-    </div>
+    <main
+      style={{
+        minHeight: "100vh",
+        display: "grid",
+        placeItems: "center",
+        background: "#f8fafc",
+      }}
+    >
+      <SignIn
+        path="/login"
+        routing="path"
+        signUpUrl="/register"
+        fallbackRedirectUrl="/auth/redirect"
+        forceRedirectUrl="/auth/redirect"
+      />
+    </main>
   );
 }
 
