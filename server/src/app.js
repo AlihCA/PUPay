@@ -1,4 +1,4 @@
-console.log("APP.JS LOADED");
+
 
 import express from "express";
 import studentRoutes from "./routes/studentRoutes.js";

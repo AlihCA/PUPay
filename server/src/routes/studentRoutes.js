@@ -9,6 +9,12 @@ import {
 
 const router = express.Router();
 
+// ========================================
+// FUTURE API
+// GET /api/students
+// GET /api/students/:id
+// ========================================
+
 // READ
 router.get("/", getStudents);
 router.get("/:id", getStudentById);

@@ -1,5 +1,6 @@
 export const isAdmin = (req, res, next) => {
   try {
+    // NOTE: req.user comes from CIA auth middleware (Clerk integration)
     if (!req.user) {
       return res.status(401).json({
         success: false,

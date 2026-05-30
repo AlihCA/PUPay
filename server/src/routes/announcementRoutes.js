@@ -11,6 +11,14 @@ import {
 
 const router = express.Router();
 
+// ========================================
+// FUTURE API
+// GET /api/announcements
+// POST /api/announcements
+// PUT /api/announcements/:id
+// DELETE /api/announcements/:id
+// ========================================
+
 router.post("/", isAdmin, createAnnouncement);
 router.get("/", getAllAnnouncements);
 router.get("/:id", getAnnouncementById);

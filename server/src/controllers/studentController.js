@@ -1,3 +1,12 @@
+// ========================================
+// FUTURE API
+// GET /api/students
+// GET /api/students/:id
+// ========================================
+
+// TODO:
+// Replace in-memory storage with MySQL queries
+
 import { successResponse, errorResponse } from "../utils/responseHelper.js";
 
 let students = [];
@@ -5,7 +14,11 @@ let currentStudentId = 1;
 
 // GET all students
 export const getStudents = (req, res) => {
-  return successResponse(res, "Students fetched successfully", students);
+  return successResponse(
+    res,
+    "Students fetched successfully",
+    students
+  );
 };
 
 // GET student by ID
@@ -18,15 +31,23 @@ export const getStudentById = (req, res) => {
     return errorResponse(res, "Student not found", 404);
   }
 
-  return successResponse(res, "Student fetched successfully", student);
+  return successResponse(
+    res,
+    "Student fetched successfully",
+    student
+  );
 };
 
 // CREATE student
 export const createStudent = (req, res) => {
   const { name, course } = req.body;
 
-  if (!name || !course) {
-    return errorResponse(res, "Name and course are required", 400);
+  if (!name?.trim()) {
+    return errorResponse(res, "Name is required", 400);
+  }
+
+  if (!course?.trim()) {
+    return errorResponse(res, "Course is required", 400);
   }
 
   const newStudent = {
@@ -38,7 +59,12 @@ export const createStudent = (req, res) => {
 
   students.push(newStudent);
 
-  return successResponse(res, "Student created successfully", newStudent, 201);
+  return successResponse(
+    res,
+    "Student created successfully",
+    newStudent,
+    201
+  );
 };
 
 // UPDATE student
@@ -56,10 +82,22 @@ export const updateStudent = (req, res) => {
     return errorResponse(res, "Nothing to update", 400);
   }
 
-  student.name = name || student.name;
-  student.course = course || student.course;
+  if (name !== undefined && !name.trim()) {
+    return errorResponse(res, "Name cannot be empty", 400);
+  }
 
-  return successResponse(res, "Student updated successfully", student);
+  if (course !== undefined && !course.trim()) {
+    return errorResponse(res, "Course cannot be empty", 400);
+  }
+
+  student.name = name ?? student.name;
+  student.course = course ?? student.course;
+
+  return successResponse(
+    res,
+    "Student updated successfully",
+    student
+  );
 };
 
 // DELETE student
@@ -74,5 +112,9 @@ export const deleteStudent = (req, res) => {
 
   const deleted = students.splice(index, 1);
 
-  return successResponse(res, "Student deleted successfully", deleted[0]);
+  return successResponse(
+    res,
+    "Student deleted successfully",
+    deleted[0]
+  );
 };
